@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  const HelloPage("hello, new york"),
+      home:  const HelloPage("hello, Unless!"),
     );
   }
 }
@@ -32,13 +32,33 @@ class HelloPage extends StatefulWidget {
 }
 
 class _HelloPageState extends State<HelloPage> {
+  String _message = "Hello Unless?";
+  int _counter = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: _changeMessage),
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Text(widget.title, style: const TextStyle(fontSize: 100))
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(_message, style: const TextStyle(fontSize: 40)),
+                Text('$_counter', style: const TextStyle(fontSize: 40))
+              ],
+            )
+        )
     );
+  }
+  void _changeMessage() {
+    setState(() {
+      _message = "안녕 언레스!";
+      _counter++;
+    });
   }
 }
